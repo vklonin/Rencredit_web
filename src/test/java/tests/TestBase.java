@@ -2,6 +2,7 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import com.github.javafaker.Faker;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -12,6 +13,13 @@ import static java.lang.String.format;
 
 public class TestBase {
 
+    Faker faker = new Faker();
+
+
+    static void setupLocal(){
+        Configuration.startMaximized = true;
+        //Configuration.browser = "safari";
+    }
     @BeforeAll
     static void setup(){
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
