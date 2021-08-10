@@ -12,7 +12,7 @@ public class WebTests extends TestBase{
     @Test
     void openMainPage(){
         step("Open main page", () -> open("https://dataart.team"));
-        step("Check if it is a right page" , () -> $("*").shouldHave(Condition.exactText("")));
+        step("Check if it is a right page" , () -> $(".new-mainHero__title").shouldHave(Condition.exactText("Прежде всего — люди")));
     }
 
 }

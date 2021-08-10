@@ -22,6 +22,7 @@ public class TestBase {
 
         Configuration.browserCapabilities = capabilities;
         Configuration.startMaximized = true;
+        //Configuration.browser = "safari";
         Configuration.remote = format("https://%s:%s@%s",credentialsConfig.login(),credentialsConfig.password(),System.getProperty("remoteWD"));  //"https://"+ credentialsConfig.login() +":"+ credentialsConfig.password() + "@" + System.getProperty("remoteWD"); //"https://user1:1234@selenoid.autotests.cloud/wd/hub/";
     }
 
