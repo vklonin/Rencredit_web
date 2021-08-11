@@ -10,7 +10,7 @@ ___
 | <img src="images/Jenkins.svg" width="40" height="40"> | <img src="images/Selenoid.svg" width="40" height="40"> | <img src="images/Allure Report.svg" width="40" height="40"> | 
 ___
 
-## Run tests in Jenkins Default parameters [Jenkins](https://jenkins.autotests.cloud/job/MuratovEgor_HomeWork_12/build?delay=0sec) <a href="https://www.jetbrains.com/idea/"><img src="./images/Jenkins.svg" width="30" height="30"  alt="Jenkins"/></a>
+## Run tests in Jenkins Default parameters [Jenkins](https://jenkins.autotests.cloud/job/dataart_tests/build?delay=0sec) <a href="https://www.jetbrains.com/idea/"><img src="./images/Jenkins.svg" width="30" height="30"  alt="Jenkins"/></a>
 
 * REMOTE_DRIVER_URL (url address from selenoid or grid. default selenoid.autotests.cloud)
 * ALLURE_NOTIFICATIONS_VERSION (default 3.0.1)
@@ -20,7 +20,8 @@ ___
 *telegram integration made through 3d-parties library, settings passed through Jenkins job
 
 ## Results in Jenkins with Allure Reports
-![alt "Allure Reports"](./images/jenkinsResult.png "Allure Reports")
+![alt "Jenkins"](./images/jenkinsResult.png "Jenkins")
+![alt "Allure reports"](./images/allureResult.png "Allure Reports")
 
 ## Test results video attachment example from Selenoid
 

@@ -14,9 +14,9 @@ public class WebTests extends TestBase{
 
 
     @Test
-    void openBasicPage(){
-        open("https://www.dataart.com");
-        $(".language-button__lang").$(byText("EN (US)")).shouldBe(Condition.visible);
+    void openDEPage(){
+        open("https://www.dataart.com/de?");
+        $(".language-button__lang").$(byText("DE")).shouldBe(Condition.visible);
     }
     @Test
     void openUAPage(){
@@ -27,7 +27,9 @@ public class WebTests extends TestBase{
      }
     @Test
     void contactUsNegative(){ //making negative test in order to not load real software with fake data
-        open("https://www.dataart.com?");
+        open("https://www.dataart.com/de?");
+        $(".language-button__lang").$(byText("DE")).click();
+        $(byAttribute("title", "ENU")).click();
         $(byAttribute("title", "CONTACT US")).click();
         $(byAttribute("name", "first_name")).setValue(faker.name().firstName());
         $(byAttribute("name", "last_name")).setValue(faker.name().lastName());
