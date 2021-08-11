@@ -1,17 +1,12 @@
 package tests;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.selector.ByAttribute;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-
 import static com.codeborne.selenide.Selectors.byAttribute;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static io.qameta.allure.Allure.step;
 
 public class WebTests extends TestBase{
-
 
     @Test
     void openDEPage(){
@@ -38,7 +33,6 @@ public class WebTests extends TestBase{
         $(byAttribute("name", "email")).setValue(faker.internet().emailAddress());
         $(byAttribute("type", "submit")).click();
         $(".form-success__heading").shouldNotBe(Condition.visible);
-
     }
     @Test
     void findFirstTopArticleInBlog() {
@@ -55,9 +49,7 @@ public class WebTests extends TestBase{
     }
     @Test
     void searchTest(){
-
         String searchItem = "agile";
-
         open("https://www.dataart.com?");
         $("#search__icon").click();
         $("#searchH").setValue(searchItem).pressEnter();

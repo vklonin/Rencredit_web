@@ -17,7 +17,6 @@ public class TestBase {
 
     static void setupLocal(){
         Configuration.startMaximized = true;
-        //Configuration.browser = "safari";
     }
     @BeforeAll
     static void setup(){
