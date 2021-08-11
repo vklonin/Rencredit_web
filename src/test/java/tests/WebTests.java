@@ -36,6 +36,27 @@ public class WebTests extends TestBase{
         $(".form-success__heading").shouldNotBe(Condition.visible);
 
     }
+    @Test
+    void findFirstTopArticleInBlog() {
+        open("https://www.dataart.com");
+        $(byAttribute("title", "Blog")).click();
+        String topArticleTitle = $(".blog-carousel").$(byText("#1"))
+                .parent()
+                .parent()
+                .$("h2").getText();
+        $(".blog-carousel").$(byText("#1")).click();
+        $("h1").shouldHave(Condition.text(topArticleTitle));
+    }
+    @Test
+    void searchTest(){
+
+        String searchItem = "agile";
+
+        open("https://www.dataart.com");
+        $("#search__icon").click();
+        $("#searchH").setValue(searchItem).pressEnter();
+        $$(".result__item").get(0).shouldHave(Condition.text(searchItem));
+    }
 
 
 
