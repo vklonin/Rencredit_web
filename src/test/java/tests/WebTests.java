@@ -15,7 +15,9 @@ public class WebTests extends TestBase{
 
     @Test
     void openDEPage(){
-        open("https://www.dataart.com/de?");
+        open("https://www.dataart.com/");
+        $(".language-button__lang").click();
+        $(byAttribute("title", "DEU")).click();
         $(".language-button__lang").$(byText("DE")).shouldBe(Condition.visible);
     }
     @Test
@@ -27,8 +29,8 @@ public class WebTests extends TestBase{
      }
     @Test
     void contactUsNegative(){ //making negative test in order to not load real software with fake data
-        open("https://www.dataart.com/de?");
-        $(".language-button__lang").$(byText("DE")).click();
+        open("https://www.dataart.com/");
+        $(".language-button__lang").click();
         $(byAttribute("title", "ENU")).click();
         $(byAttribute("title", "CONTACT US")).click();
         $(byAttribute("name", "first_name")).setValue(faker.name().firstName());
@@ -40,7 +42,9 @@ public class WebTests extends TestBase{
     }
     @Test
     void findFirstTopArticleInBlog() {
-        open("https://www.dataart.com?");
+        open("https://www.dataart.com/");
+        $(".language-button__lang").click();
+        $(byAttribute("title", "ENU")).click();
         $(byAttribute("title", "Blog")).click();
         String topArticleTitle = $(".blog-carousel").$(byText("#1"))
                 .parent()
