@@ -27,7 +27,7 @@ public class WebTests extends TestBase{
      }
     @Test
     void contactUsNegative(){ //making negative test in order to not load real software with fake data
-        open("https://www.dataart.com");
+        open("https://www.dataart.com?");
         $(byAttribute("title", "CONTACT US")).click();
         $(byAttribute("name", "first_name")).setValue(faker.name().firstName());
         $(byAttribute("name", "last_name")).setValue(faker.name().lastName());
@@ -38,7 +38,7 @@ public class WebTests extends TestBase{
     }
     @Test
     void findFirstTopArticleInBlog() {
-        open("https://www.dataart.com");
+        open("https://www.dataart.com?");
         $(byAttribute("title", "Blog")).click();
         String topArticleTitle = $(".blog-carousel").$(byText("#1"))
                 .parent()
@@ -52,7 +52,7 @@ public class WebTests extends TestBase{
 
         String searchItem = "agile";
 
-        open("https://www.dataart.com");
+        open("https://www.dataart.com?");
         $("#search__icon").click();
         $("#searchH").setValue(searchItem).pressEnter();
         $$(".result__item").get(0).shouldHave(Condition.text(searchItem));
