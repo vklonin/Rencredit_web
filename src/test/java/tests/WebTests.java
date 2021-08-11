@@ -42,10 +42,10 @@ public class WebTests extends TestBase{
     }
     @Test
     void findFirstTopArticleInBlog() {
-        open("https://www.dataart.com/");
+        open("https://www.dataart.com/?");
+        $(byAttribute("title", "Blog")).click();
         $(".language-button__lang").click();
         $(byAttribute("title", "ENU")).click();
-        $(byAttribute("title", "Blog")).click();
         String topArticleTitle = $(".blog-carousel").$(byText("#1"))
                 .parent()
                 .parent()
