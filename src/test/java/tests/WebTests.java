@@ -1,30 +1,28 @@
 package tests;
 
 import com.codeborne.selenide.Condition;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
-public class WebTests extends TestBase{
+public class WebTests extends TestBase {
 
-    //@Test
-    void openMainPageAndCheckLogo(){
+    @Test
+    void openMainPageAndCheckLogo() {
         open(baseUrl);
         $("div.popup__close").click();
         $("img.logo__image").shouldBe(Condition.visible);
     }
 
-    //@Test
-    @Tag("current")
+    @Test
     void searchStringAndCheckFindings() {
 
         String searcString = "продукт";
 
         Cookie subWindow = new Cookie("visibleSubBanner", "Y");
-        open(baseUrl+"/local/templates/bft/images/1x/logo-mobile.svg");
+        open(baseUrl + "/local/templates/bft/images/1x/logo-mobile.svg");
         getWebDriver().manage().addCookie(subWindow);
 
         open(baseUrl);
@@ -33,15 +31,14 @@ public class WebTests extends TestBase{
 
     }
 
-    //@Test
-    @Tag("current")
+    @Test
     void chooseCommercialProductCheckIsItRightOne() {
 
         String productType = "Решения для коммерческих организаций";
         String productItself = "Система электронного документооборота Docsvision";
 
         Cookie subWindow = new Cookie("visibleSubBanner", "Y");
-        open(baseUrl+"/local/templates/bft/images/1x/logo-mobile.svg");
+        open(baseUrl + "/local/templates/bft/images/1x/logo-mobile.svg");
         getWebDriver().manage().addCookie(subWindow);
 
         open(baseUrl);
@@ -53,14 +50,13 @@ public class WebTests extends TestBase{
     }
 
     @Test
-    @Tag("current")
     void chooseSalesAreaCheckSalesRepresentative() {
 
         String salesArea = "Субъекты РФ";
         String stateName = "Амурская область";
 
         Cookie subWindow = new Cookie("visibleSubBanner", "Y");
-        open(baseUrl+"/local/templates/bft/images/1x/logo-mobile.svg");
+        open(baseUrl + "/local/templates/bft/images/1x/logo-mobile.svg");
         getWebDriver().manage().addCookie(subWindow);
 
         open(baseUrl);
