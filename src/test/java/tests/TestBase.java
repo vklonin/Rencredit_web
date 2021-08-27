@@ -14,6 +14,7 @@ import static java.lang.String.format;
 public class TestBase {
 
     Faker faker = new Faker();
+    String baseUrl = "https://bftcom.com";
 
     static void setupLocal(){
         Configuration.startMaximized = true;
@@ -22,13 +23,15 @@ public class TestBase {
     static void setup(){
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("enableVNC", true);
-        capabilities.setCapability("enableVideo", true);
-
-        Configuration.browserCapabilities = capabilities;
         Configuration.startMaximized = true;
-        Configuration.remote = format("https://%s:%s@%s",credentialsConfig.login(),credentialsConfig.password(),System.getProperty("remoteWD"));  //"https://"+ credentialsConfig.login() +":"+ credentialsConfig.password() + "@" + System.getProperty("remoteWD"); //"https://user1:1234@selenoid.autotests.cloud/wd/hub/";
+        if(System.getProperty("remote").equals("1")) {
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("enableVNC", true);
+            capabilities.setCapability("enableVideo", true);
+
+            Configuration.browserCapabilities = capabilities;
+            Configuration.remote = format("https://%s:%s@%s", credentialsConfig.login(), credentialsConfig.password(), System.getProperty("remoteWD"));
+        }
     }
 
     @AfterEach
