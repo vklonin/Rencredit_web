@@ -1,61 +1,75 @@
 package tests;
 
 import com.codeborne.selenide.Condition;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import static com.codeborne.selenide.Selectors.byAttribute;
-import static com.codeborne.selenide.Selectors.byText;
+import org.openqa.selenium.Cookie;
+
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class WebTests extends TestBase{
 
-    @Test
-    void openDEPage(){
-        open("https://www.dataart.com/");
-        $(".language-button__lang").click();
-        $(byAttribute("title", "DEU")).click();
-        $(".language-button__lang").$(byText("DE")).shouldBe(Condition.visible);
-    }
-    @Test
-    void openUAPage(){
-        open("https://www.dataart.com.ua");
-        $$(".main-menu__item").get(0).hover();
-        $(byAttribute("title", "Про DataArt")).click();
-        $(".feature__heading").shouldHave(Condition.text("ПРО DATAART"));
-     }
-    @Test
-    void contactUsNegative(){ //making negative test in order to not load real software with fake data
-        open("https://www.dataart.com/");
-        $(".language-button__lang").click();
-        $(byAttribute("title", "ENU")).click();
-        $(byAttribute("title", "CONTACT US")).click();
-        $(byAttribute("name", "first_name")).setValue(faker.name().firstName());
-        $(byAttribute("name", "last_name")).setValue(faker.name().lastName());
-        $(byAttribute("name", "email")).setValue(faker.internet().emailAddress());
-        $(byAttribute("type", "submit")).click();
-        $(".form-success__heading").shouldNotBe(Condition.visible);
-    }
-    @Test
-    void findFirstTopArticleInBlog() {
-        open("https://www.dataart.com/?");
-        $(byAttribute("title", "Blog")).click();
-        $(".language-button__lang").click();
-        $(byAttribute("title", "ENU")).click();
-        String topArticleTitle = $(".blog-carousel").$(byText("#1"))
-                .parent()
-                .parent()
-                .$("h2").getText();
-        $(".blog-carousel").$(byText("#1")).click();
-        $("h1").shouldHave(Condition.text(topArticleTitle));
-    }
-    @Test
-    void searchTest(){
-        String searchItem = "agile";
-        open("https://www.dataart.com?");
-        $("#search__icon").click();
-        $("#searchH").setValue(searchItem).pressEnter();
-        $$(".result__item").get(0).shouldHave(Condition.text(searchItem));
+    //@Test
+    void openMainPageAndCheckLogo(){
+        open(baseUrl);
+        $("div.popup__close").click();
+        $("img.logo__image").shouldBe(Condition.visible);
     }
 
+    //@Test
+    @Tag("current")
+    void searchStringAndCheckFindings() {
 
+        String searcString = "продукт";
+
+        Cookie subWindow = new Cookie("visibleSubBanner", "Y");
+        open(baseUrl+"/local/templates/bft/images/1x/logo-mobile.svg");
+        getWebDriver().manage().addCookie(subWindow);
+
+        open(baseUrl);
+        $("input.search__input").val(searcString).pressEnter();
+        $$("p").get(0).shouldHave(Condition.text(searcString));
+
+    }
+
+    //@Test
+    @Tag("current")
+    void chooseCommercialProductCheckIsItRightOne() {
+
+        String productType = "Решения для коммерческих организаций";
+        String productItself = "Система электронного документооборота Docsvision";
+
+        Cookie subWindow = new Cookie("visibleSubBanner", "Y");
+        open(baseUrl+"/local/templates/bft/images/1x/logo-mobile.svg");
+        getWebDriver().manage().addCookie(subWindow);
+
+        open(baseUrl);
+
+        $$("div.nav__item").find(Condition.text("Каталог продуктов")).click();//Каталог продуктов
+        $$("a.product__item").find(Condition.text(productType)).click();//
+        $$("a.product__item").find(Condition.text(productItself)).click();
+        $("div.product__content").shouldHave(Condition.text(productItself));
+    }
+
+    @Test
+    @Tag("current")
+    void chooseSalesAreaCheckSalesRepresentative() {
+
+        String salesArea = "Субъекты РФ";
+        String stateName = "Амурская область";
+
+        Cookie subWindow = new Cookie("visibleSubBanner", "Y");
+        open(baseUrl+"/local/templates/bft/images/1x/logo-mobile.svg");
+        getWebDriver().manage().addCookie(subWindow);
+
+        open(baseUrl);
+
+        $$("div.nav__item").find(Condition.text("Как начать сотрудничество")).click();
+        $$("div.filter__item").find(Condition.text(salesArea)).scrollTo().hover();//
+        $$("li.filter__link").find(Condition.text(stateName)).click();
+        $("div.team__description").shouldHave(Condition.text(stateName));
+
+    }
 
 }
