@@ -11,7 +11,7 @@ public class WebTests extends TestBase {
 
     @Test
     void openMainPageAndCheckLogo() {
-        page.openPage();
+
         $("img.logo__image").shouldBe(Condition.visible);
     }
 
