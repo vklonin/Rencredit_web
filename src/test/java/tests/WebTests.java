@@ -2,15 +2,12 @@ package tests;
 
 import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Cookie;
 import pages.MainPage;
 
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+
 
 public class WebTests extends TestBase {
-
-    MainPage page = new MainPage();
 
     @Test
     void openMainPageAndCheckLogo() {
