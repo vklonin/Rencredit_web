@@ -16,7 +16,7 @@ ___
 * ALLURE_NOTIFICATIONS_VERSION (default 3.0.1)
 * credentials passed through a Jenkins job (used Owner Java library to get them from .properties)
 
-## Telegram channel to look at results [(Telegram channel)](https://t.me/joinchat/Mw7kwU7FWbEyNzVi)
+## Telegram channel to look at results [(Telegram channel)](https://t.me/joinchat/d7-KKDr_A4FjMjM6)
 *telegram integration made through 3d-parties library, settings passed through Jenkins job
 
 ## Results in Jenkins with Allure Reports
