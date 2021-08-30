@@ -20,9 +20,9 @@ ___
 *telegram integration made through 3d-parties library, settings passed through Jenkins job
 
 ## Results in Jenkins with Allure Reports
-![alt "Jenkins"](./images/jenkinsResult.png "Jenkins")
-![alt "Allure reports"](./images/allureResult.png "Allure Reports")
+![alt "Jenkins"](./images/JenkinsBtf.png "Jenkins")
+![alt "Allure reports"](./images/allureBtf.png "Allure Reports")
 
 ## Test results video attachment example from Selenoid
 
-![alt "Video from Selenoid"](./images/video.gif "Video from Selenoid")
+![alt "Video from Selenoid"](./images/videoBtf.gif "Video from Selenoid")
