@@ -18,7 +18,7 @@ public class WebTests extends TestBase {
     @Test
     void searchStringAndCheckFindings() {
         String searchString = "продукт";
-        page.openPage();
+
         page.search(searchString);
         $$("p").get(0).shouldHave(Condition.text(searchString));
     }
