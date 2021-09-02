@@ -43,6 +43,7 @@ public class WebTests extends TestBase {
         String salesArea = "Субъекты РФ";
         String stateName = "Амурская область";
 
+        page.openPage();
         page.switchToMainMenuItem("Как начать сотрудничество");
 
         $$("div.filter__item").find(Condition.text(salesArea)).scrollTo().hover();//
