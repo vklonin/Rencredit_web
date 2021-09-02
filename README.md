@@ -18,6 +18,7 @@ ___
 
 ## Telegram channel to look at results [(Telegram channel)](https://t.me/joinchat/d7-KKDr_A4FjMjM6)
 *telegram integration made through 3d-parties library, settings passed through Jenkins job
+![alt "Telegram"](./images/telegramBtf.png "Jenkins")
 
 ## Results in Jenkins with Allure Reports
 ![alt "Jenkins"](./images/JenkinsBtf.png "Jenkins")
