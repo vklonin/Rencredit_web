@@ -1,6 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Test;
 import pages.MainPage;
 
@@ -44,9 +45,26 @@ public class WebTests extends TestBase {
 
         page.switchToMainMenuItem("Как начать сотрудничество");
 
-        //$$("div.nav__item").find(Condition.text("Как начать сотрудничество")).click();
         $$("div.filter__item").find(Condition.text(salesArea)).scrollTo().hover();//
         $$("li.filter__link").find(Condition.text(stateName)).click();
         $("div.team__description").shouldHave(Condition.text(stateName));
+    }
+
+    @Test
+    void chooseCareerOpportunityCheckFilterWorks(){
+
+        String mainMenuItem = "Карьера";
+        String SecondMenuItem = "Вакансии";
+        String vacancyType = "Административный персонал";
+
+        page.hoverToMainMenuItem(mainMenuItem);
+        $$("div.sub_list__item").find(Condition.text(SecondMenuItem)).click();
+        $$("span.career__title").find(Condition.text(vacancyType)).scrollTo().click();
+        SelenideElement option = $$("option").get(2);
+        option.click();
+        $$("button").find(Condition.text("Найти")).scrollTo().pressEnter();
+        String area = option.getText();
+        $$("button").find(Condition.text("Найти")).scrollTo();
+        $$("div.vacancy__item").get(0).shouldBe(Condition.text(area));
     }
 }

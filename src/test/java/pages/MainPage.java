@@ -25,5 +25,9 @@ public class MainPage {
         $$("div.nav__item").find(Condition.text(menuItem)).click();
     }
 
+    public void hoverToMainMenuItem(String menuItem){
+        $$("div.nav__item").find(Condition.text(menuItem)).hover();
+    }
+
 
 }
