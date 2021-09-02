@@ -3,7 +3,6 @@ package tests;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Test;
-import pages.MainPage;
 
 import static com.codeborne.selenide.Selenide.*;
 

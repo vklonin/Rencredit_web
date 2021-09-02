@@ -1,4 +1,4 @@
-# Autotests for DataArt
+# Autotests for bftcom.com
 ___
 ## Stack
 | GitHub | IntelliJ IDEA | Java | Gradle | Junit5 | Selenide |
@@ -18,11 +18,11 @@ ___
 
 ## Telegram channel to look at results [(Telegram channel)](https://t.me/joinchat/d7-KKDr_A4FjMjM6)
 *telegram integration made through 3d-parties library, settings passed through Jenkins job
-![alt "Telegram"](./images/telegramBtf.png "Jenkins")
+![alt "Telegram"](./images/telegramBft.png "Jenkins")
 
 ## Results in Jenkins with Allure Reports
-![alt "Jenkins"](./images/JenkinsBtf.png "Jenkins")
-![alt "Allure reports"](./images/allureBtf.png "Allure Reports")
+![alt "Jenkins"](./images/JenkinsBft.png "Jenkins")
+![alt "Allure reports"](./images/allureBft.png "Allure Reports")
 
 ## Test results video attachment example from Selenoid
 
