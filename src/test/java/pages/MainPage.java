@@ -44,12 +44,10 @@ public class MainPage {
     }
 
     public void fillMessageForm(String name, String mail, String subject, String message) {
-
         $("[name=your-name]").val(name);
         $("[name=your-email]").val(mail);
         $("[name=your-subject]").val(subject);
         $("[name=your-message]").val(message);
-
     }
 
     public void submitMessage() {

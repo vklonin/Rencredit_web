@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
 
-
 public class WebTests extends TestBase {
 
     @Test
@@ -29,11 +28,9 @@ public class WebTests extends TestBase {
         page.manuNavigateTo(firstLevelMenu).hover();
         page.manuNavigateInMenu(secondLevelMenu, page.manuNavigateTo(firstLevelMenu)).click();
 
-
         step("check if it is a right '{secondLevelMenu}' page", () ->
                 $("body").shouldHave(Condition.text(secondLevelMenu))
         );
-
     }
 
     @Test

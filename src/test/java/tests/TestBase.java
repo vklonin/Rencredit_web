@@ -22,11 +22,11 @@ public class TestBase {
     static MainPage page = new MainPage();
 
     @BeforeAll
-    static void setup(){
+    static void setup() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
         Configuration.startMaximized = true;
-        if(System.getProperty("remote").equals("1")) {
+        if (System.getProperty("remote").equals("1")) {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("enableVNC", true);
             capabilities.setCapability("enableVideo", true);
@@ -40,7 +40,7 @@ public class TestBase {
     }
 
     @AfterEach
-    void addAttachments(){
+    void addAttachments() {
         Attach.screenshotAs("last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
