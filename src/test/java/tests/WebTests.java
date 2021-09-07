@@ -5,66 +5,30 @@ import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.*;
+import static io.qameta.allure.Allure.step;
 
 
 public class WebTests extends TestBase {
 
     @Test
-    void openMainPageAndCheckLogo() {
-
-        $("img.logo__image").shouldBe(Condition.visible);
-    }
-
-    @Test
     void searchStringAndCheckFindings() {
         String searchString = "продукт";
 
-        page.search(searchString);
-        $$("p").get(0).shouldHave(Condition.text(searchString));
+        step("execute search and check results", () -> {
+            SelenideElement serchResult = page.searchDesktop(searchString);
+            page.getFirstFoundElementBody(serchResult).shouldHave(Condition.text(searchString));
+        });
     }
 
     @Test
-    void chooseCommercialProductCheckIsItRightOne() {
+    void navigateToSecondLevelMenuItemAndCheckIt() {
+        String firstLevelMenu = "УСЛУГИ";
+        String secondLevelMenu = "Внедрение MS Dynamics CRM";
 
-        String productType = "Решения для коммерческих организаций";
-        String productItself = "Система электронного документооборота Docsvision";
+        page.manuNavigateTo(firstLevelMenu).hover();
+        page.manuNavigateInMenu(secondLevelMenu, page.manuNavigateTo(firstLevelMenu)).click();
 
-        page.switchToMainMenuItem("Каталог продуктов");
-
-        $$("a.product__item").find(Condition.text(productType)).click();
-        $$("a.product__item").find(Condition.text(productItself)).click();
-        $("div.product__content").shouldHave(Condition.text(productItself));
+        $("body").shouldHave(Condition.text(secondLevelMenu));
     }
 
-    @Test
-    void chooseSalesAreaCheckSalesRepresentative() {
-
-        String salesArea = "Субъекты РФ";
-        String stateName = "Амурская область";
-
-        page.openPage();
-        page.switchToMainMenuItem("Как начать сотрудничество");
-
-        $$("div.filter__item").find(Condition.text(salesArea)).scrollTo().hover();//
-        $$("li.filter__link").find(Condition.text(stateName)).click();
-        $("div.team__description").shouldHave(Condition.text(stateName));
-    }
-
-    @Test
-    void chooseCareerOpportunityCheckFilterWorks(){
-
-        String mainMenuItem = "Карьера";
-        String SecondMenuItem = "Вакансии";
-        String vacancyType = "Административный персонал";
-
-        page.hoverToMainMenuItem(mainMenuItem);
-        $$("div.sub_list__item").find(Condition.text(SecondMenuItem)).click();
-        $$("span.career__title").find(Condition.text(vacancyType)).scrollTo().click();
-        SelenideElement option = $$("option").get(2);
-        option.click();
-        $$("button").find(Condition.text("Найти")).scrollTo().pressEnter();
-        String area = option.getText();
-        $$("button").find(Condition.text("Найти")).scrollTo();
-        $$("div.vacancy__item").get(0).shouldBe(Condition.text(area));
-    }
 }

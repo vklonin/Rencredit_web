@@ -1,33 +1,46 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.Cookie;
 
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.addListener;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class MainPage {
 
-    public static String basePageURL = "https://bftcom.com";
+    public static String basePageURL = "http://it-basis.com/";
 
     public void openPage() {
-        Cookie subWindow = new Cookie("visibleSubBanner", "Y");
-        open(basePageURL + "/local/templates/bft/images/1x/logo-mobile.svg");
-        getWebDriver().manage().addCookie(subWindow);
+        open(basePageURL + "/wp-content/uploads/2018/02/cropped-190-54-blue-2.png");
         open(basePageURL);
     }
 
-    public void search(String searchString){
-        $("input.search__input").val(searchString).pressEnter();
+    @Step("search by '{searchString}'")
+    public SelenideElement searchDesktop(String searchString) {
+        $("button.fa-search.desktop").click();
+        $("input[name=s]").val(searchString).pressEnter();
+
+        return $("ol.search-posts");
     }
 
-    public void switchToMainMenuItem(String menuItem){
-        $$("div.nav__item").find(Condition.text(menuItem)).click();
+    @Step("return first found element")
+    public SelenideElement getFirstFoundElementBody(SelenideElement serchResult) {
+        serchResult.$$("li").get(0).click();
+        return $("body");
     }
 
-    public void hoverToMainMenuItem(String menuItem){
-        $$("div.nav__item").find(Condition.text(menuItem)).hover();
+    @Step("navigating to the '{menuItem}'")
+    public SelenideElement manuNavigateTo(String menuItem) {
+        return $$("li").find(Condition.text(menuItem));
     }
 
+    @Step("navigating to the '{menuItem}'")
+    public SelenideElement manuNavigateInMenu(String menuItem, SelenideElement menu) {
+        return menu.$$("li").find(Condition.text(menuItem));
+    }
 
 }
