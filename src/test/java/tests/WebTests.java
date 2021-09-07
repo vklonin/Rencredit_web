@@ -2,6 +2,7 @@ package tests;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -28,7 +29,35 @@ public class WebTests extends TestBase {
         page.manuNavigateTo(firstLevelMenu).hover();
         page.manuNavigateInMenu(secondLevelMenu, page.manuNavigateTo(firstLevelMenu)).click();
 
-        $("body").shouldHave(Condition.text(secondLevelMenu));
+
+        step("check if it is a right '{secondLevelMenu}' page", () ->
+                $("body").shouldHave(Condition.text(secondLevelMenu))
+        );
+
+    }
+
+    @Test
+    void negativeGetConsultationMessage() {
+        String name = (new Faker()).name().fullName();
+        page.fillMessageForm(name, "", "", "");
+        page.submitMessage();
+        $("body").shouldHave(Condition.text("Пожалуйста, заполните обязательное поле"));
+    }
+
+    @Test
+    void negativeSendMessage() {
+        String firstLevelMenu = "О нас";
+        String secondLevelMenu = "Контакты";
+
+        String name = (new Faker()).name().fullName();
+
+        page.manuNavigateTo(firstLevelMenu).hover();
+        page.manuNavigateInMenu(secondLevelMenu, page.manuNavigateTo(firstLevelMenu)).click();
+
+        page.fillMessageForm(name, "", "", "");
+        page.submitMessage();
+
+        $("body").shouldHave(Condition.text("Пожалуйста, заполните обязательное поле"));
     }
 
 }

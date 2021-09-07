@@ -43,4 +43,16 @@ public class MainPage {
         return menu.$$("li").find(Condition.text(menuItem));
     }
 
+    public void fillMessageForm(String name, String mail, String subject, String message) {
+
+        $("[name=your-name]").val(name);
+        $("[name=your-email]").val(mail);
+        $("[name=your-subject]").val(subject);
+        $("[name=your-message]").val(message);
+
+    }
+
+    public void submitMessage() {
+        $("input[type=submit]").click();
+    }
 }
