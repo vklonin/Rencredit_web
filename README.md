@@ -1,4 +1,4 @@
-# Autotests for bftcom.com
+# Autotests for IT_basis.com
 ___
 ## Stack
 | GitHub | IntelliJ IDEA | Java | Gradle | Junit5 | Selenide |
@@ -18,12 +18,12 @@ ___
 
 ## Telegram channel to look at results [(Telegram channel)](https://t.me/joinchat/d7-KKDr_A4FjMjM6)
 *telegram integration made through 3d-parties library, settings passed through Jenkins job
-![alt "Telegram"](./images/telegramBft.png "Jenkins")
+![alt "Telegram"](./images/telegramITb.png "telegram")
 
 ## Results in Jenkins with Allure Reports
-![alt "Jenkins"](./images/JenkinsBft.png "Jenkins")
-![alt "Allure reports"](./images/allureBft.png "Allure Reports")
+![alt "Jenkins"](./images/jenkinsITb.png "Jenkins")
+![alt "Allure reports"](./images/allureITb.png "Allure Reports")
 
 ## Test results video attachment example from Selenoid
 
-![alt "Video from Selenoid"](./images/videoBtf.gif "Video from Selenoid")
+![alt "Video from Selenoid"](./images/videoITb.gif "Video from Selenoid")
