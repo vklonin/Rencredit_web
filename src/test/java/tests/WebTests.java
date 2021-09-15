@@ -1,17 +1,13 @@
 package tests;
 
 import io.qameta.allure.Story;
-import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
-import pages.utils.MainNavigationMenuItem;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
-import java.util.Date;
+import pages.utils.MainNavigationMenuItem;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.sleep;
-import static io.restassured.RestAssured.given;
 
 public class WebTests extends TestBase {
 
@@ -30,7 +26,7 @@ public class WebTests extends TestBase {
             "50,990 000"
     })
 
-    @ParameterizedTest(name = "Moving of summ handle checking (for example, {1} elements)")
+    @ParameterizedTest(name = "Moving of sum handle and checking {1} value )")
     void checkCreditCalculation(int movementPrecentage, String validaionString) {
 
         page.openPage();
@@ -53,7 +49,7 @@ public class WebTests extends TestBase {
     void fillRequestForCard() {
 
         String mainPhoneNumber = "919" + faker.number().digits(7);
-        String phoneToCheck = "+7 (919) " + mainPhoneNumber.substring(3,6) + "-" + mainPhoneNumber.substring(6);
+        String phoneToCheck = "+7 (919) " + mainPhoneNumber.substring(3, 6) + "-" + mainPhoneNumber.substring(6);
 
         page.openPage();
         page.getNavigationMenu().navigateToMenuItem(MainNavigationMenuItem.CARDS);
@@ -68,12 +64,12 @@ public class WebTests extends TestBase {
         page.selectGender();
         sleep(500); // иногда не успевает нажать кнопку
 
-        page.pushButton( "Далее", 0);
+        page.pushButton("Далее", 0);
 
         page.fillRequestFieldEndWithEnter("Passport", faker.number().digits(10));
         page.fillRequestField("PassportDepartment", faker.number().digits(6));
         page.fillRequestFieldEndWithEnter("PassportDate", "11102018");
-        page.fillRequestFieldEndWithEnter("PassportBirthday","11011971");
+        page.fillRequestFieldEndWithEnter("PassportBirthday", "11011971");
         page.fillRequestFieldEndWithEnter("PassportBirthPlace", "ТОЛЬКА");
         page.fillRequestFieldEndWithTab("FactRegion", "Респ Татарстан");
         page.fillRequestFieldEndWithTab("FactCityFull", "г Казань");
@@ -84,13 +80,13 @@ public class WebTests extends TestBase {
 
         page.pushButton("Далее", 1);
 
-        page.selectOption("IncomingType",1);
+        page.selectOption("IncomingType", 1);
         page.fillRequestField("WorkIncome", "100000");
         page.fillRequestField("EmpName", "ООО НОКИЯ");
-        page.selectOption("WorkIndustry",1);
-        page.selectOption("WorkPost",1);
-        page.selectOption("WorkExperienceYears",5);
-        page.selectOption("WorkExperienceMonth",2);
+        page.selectOption("WorkIndustry", 1);
+        page.selectOption("WorkPost", 1);
+        page.selectOption("WorkExperienceYears", 5);
+        page.selectOption("WorkExperienceMonth", 2);
         page.fillRequestFieldEndWithTab("WorkRegion", "Респ Татарстан");
         page.fillRequestFieldEndWithTab("WorkCityFull", "г Казань");
         page.fillRequestFieldEndWithTab("WorkStreetFull", "ул Угловая");
@@ -99,15 +95,15 @@ public class WebTests extends TestBase {
 
         page.pushButton("Далее", 2);
 
-        page.selectOption("OtherDocument",1);
+        page.selectOption("OtherDocument", 1);
         page.fillRequestField("AdditionalCreditLimit", "100000");
         page.fillRequestFieldEndWithEnter("HomePhone", "8462" + faker.number().digits(6));
-        page.selectOption("FamilyStatus",1);
-        page.selectOption("DependentsNum",1);
-        page.selectOption("EducationLevel",1);
+        page.selectOption("FamilyStatus", 1);
+        page.selectOption("DependentsNum", 1);
+        page.selectOption("EducationLevel", 1);
         page.fillRequestField("AdditionalCode", faker.lebowski().character());
 
-        page.pushButton( "Отправить заявку", 0);
+        page.pushButton("Отправить заявку", 0);
 
         softly.assertThat($(".phone-confirm-block__phone").getText()).as("Request for card phone number ").isEqualTo(phoneToCheck);
     }
@@ -117,7 +113,7 @@ public class WebTests extends TestBase {
     void createBrokerAccount() {
 
         String mainPhoneNumber = "919" + faker.number().digits(7);
-        String phoneToCheck = "+7 (919) " + mainPhoneNumber.substring(3,6) + "-" + mainPhoneNumber.substring(6);
+        String phoneToCheck = "+7 (919) " + mainPhoneNumber.substring(3, 6) + "-" + mainPhoneNumber.substring(6);
 
         page.openPage();
         page.getNavigationMenu().navigateToMenuItem(MainNavigationMenuItem.INVESTMENTS);
@@ -133,12 +129,12 @@ public class WebTests extends TestBase {
         page.selectOption("CreditCity", 1);
         page.selectGender();
 
-        page.pushButton( "Далее", 0);
+        page.pushButton("Далее", 0);
 
         page.fillRequestFieldEndWithEnter("Passport", faker.number().digits(10));
         page.fillRequestField("PassportDepartment", faker.number().digits(6));
         page.fillRequestFieldEndWithEnter("PassportDate", "11102018");
-        page.fillRequestFieldEndWithEnter("PassportBirthday","11011971");
+        page.fillRequestFieldEndWithEnter("PassportBirthday", "11011971");
         page.fillRequestFieldEndWithEnter("PassportBirthPlace", "ТОЛЬКА");
         page.fillRequestFieldEndWithTab("FactRegion", "Респ Татарстан");
         page.fillRequestFieldEndWithTab("FactCityFull", "г Казань");
@@ -150,7 +146,7 @@ public class WebTests extends TestBase {
         page.pushButton("Далее", 1);
 
         page.fillRequestField("AdditionalCode", faker.lebowski().character());
-        page.pushButton( "Отправить заявку", 0);
+        page.pushButton("Отправить заявку", 0);
 
         softly.assertThat($(".phone-confirm-block__phone").getText()).as("Request for card phone number ").isEqualTo(phoneToCheck);
     }
@@ -160,7 +156,7 @@ public class WebTests extends TestBase {
     void createDepositAccount() {
 
         String mainPhoneNumber = "919" + faker.number().digits(7);
-        String phoneToCheck = "+7 (919) " + mainPhoneNumber.substring(3,6) + "-" + mainPhoneNumber.substring(6);
+        String phoneToCheck = "+7 (919) " + mainPhoneNumber.substring(3, 6) + "-" + mainPhoneNumber.substring(6);
 
         page.openPage();
         page.getNavigationMenu().navigateToMenuItem(MainNavigationMenuItem.DEPOSITS);
@@ -176,12 +172,12 @@ public class WebTests extends TestBase {
         page.selectOption("CreditCity", 1);
         page.selectGender();
 
-        page.pushButton( "Далее", 0);
+        page.pushButton("Далее", 0);
 
         page.fillRequestFieldEndWithEnter("Passport", faker.number().digits(10));
         page.fillRequestField("PassportDepartment", faker.number().digits(6));
         page.fillRequestFieldEndWithEnter("PassportDate", "11102018");
-        page.fillRequestFieldEndWithEnter("PassportBirthday","11011971");
+        page.fillRequestFieldEndWithEnter("PassportBirthday", "11011971");
         page.fillRequestFieldEndWithEnter("PassportBirthPlace", "ТОЛЬКА");
         page.fillRequestFieldEndWithTab("FactRegion", "Респ Татарстан");
         page.fillRequestFieldEndWithTab("FactCityFull", "г Казань");
@@ -190,10 +186,10 @@ public class WebTests extends TestBase {
         page.fillRequestFieldEndWithEnter("FactFlat", "2");
         page.fillRequestFieldEndWithTab("PassportIssuedBy", "РУВД");
 
-        page.pushButton( "Далее", 1);
+        page.pushButton("Далее", 1);
 
         page.fillRequestField("AdditionalCode", faker.lebowski().character());
-        page.pushButton( "Отправить заявку", 0);
+        page.pushButton("Отправить заявку", 0);
 
         softly.assertThat($(".phone-confirm-block__phone").getText()).as("Request for card phone number ").isEqualTo(phoneToCheck);
 
