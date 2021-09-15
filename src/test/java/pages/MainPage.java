@@ -1,56 +1,100 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.openqa.selenium.Cookie;
+import org.openqa.selenium.interactions.Actions;
 
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.WebDriverRunner.addListener;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class MainPage {
 
-    public static String basePageURL = "http://it-basis.com/";
+    private static String basePageURL = "https://rencredit.ru";
+    private static MainNavigationMenu navigationMenu = new MainNavigationMenu();
+    private static NavigationSubMenu navigationSubMenu = new NavigationSubMenu();
 
+    public String getBasePageURL() {
+        return basePageURL;
+    }
+
+    public NavigationSubMenu getNavigationSubMenu() {
+        return new NavigationSubMenu();
+    }
+
+    public MainNavigationMenu getNavigationMenu() {
+        return new MainNavigationMenu();
+    }
+
+    @Step("Open initial page")
     public void openPage() {
-        open(basePageURL + "/wp-content/uploads/2018/02/cropped-190-54-blue-2.png");
+        open(basePageURL + "/local/templates/.default/assets/images/logo.svg");
         open(basePageURL);
     }
 
-    @Step("search by '{searchString}'")
-    public SelenideElement searchDesktop(String searchString) {
-        $("button.fa-search.desktop").click();
-        $("input[name=s]").val(searchString).pressEnter();
-
-        return $("ol.search-posts");
+    @Step("Change city to '{cityToChange}'")
+    public String changeCity(String cityToChange) {
+        $("span.site-geolocation__name-link-title").click();
+        $$("li.change-location-window__list-item").find(Condition.text(cityToChange)).click();
+        return $("span.site-geolocation__name-link-title").text();
     }
 
-    @Step("return first found element")
-    public SelenideElement getFirstFoundElementBody(SelenideElement serchResult) {
-        serchResult.$$("li").get(0).click();
-        return $("body");
+    @Step("Move handle on a {movementPrecentage} %")
+    public void moveSummHandle(int movementPrecentage) {
+
+        SelenideElement sliderHandle = $(".ui-slider-handle");
+        SelenideElement sliderBar = $(".js-credit-summ-range");
+
+        int sliderLength = sliderBar.getSize().getWidth();
+        int handleWidth = sliderHandle.getSize().getWidth();
+        Actions builder = new Actions(getWebDriver());
+        builder.clickAndHold(sliderHandle)
+                .moveByOffset(sliderLength / 100 * movementPrecentage + handleWidth / 2 + 16, 0)
+                .release(sliderHandle).build().perform();
     }
 
-    @Step("navigating to the '{menuItem}'")
-    public SelenideElement manuNavigateTo(String menuItem) {
-        return $$("li").find(Condition.text(menuItem));
+    @Step("Push request card button")
+    public void pushRequestCardButton() {
+        $("a.card-main__btn").click();
     }
 
-    @Step("navigating to the '{menuItem}'")
-    public SelenideElement manuNavigateInMenu(String menuItem, SelenideElement menu) {
-        return menu.$$("li").find(Condition.text(menuItem));
+    @Step("Fill {locator} field with {value} ")
+    public void fillRequestField(String locator, String value) {
+        $("[name=" + locator + "]").setValue(value);
     }
 
-    public void fillMessageForm(String name, String mail, String subject, String message) {
-        $("[name=your-name]").val(name);
-        $("[name=your-email]").val(mail);
-        $("[name=your-subject]").val(subject);
-        $("[name=your-message]").val(message);
+    @Step("Fill {locator} field with {value} ")
+    public void fillRequestFieldEndWithEnter(String locator, String value) {
+        $("[name=" + locator + "]").setValue(value).pressEnter();
     }
 
-    public void submitMessage() {
-        $("input[type=submit]").click();
+    @Step("Fill {locator} field with {value} ")
+    public void fillRequestFieldEndWithTab(String locator, String value) {
+        $("[name=" + locator + "]").setValue(value).pressTab();
+    }
+
+    @Step("Select region {region} ")
+    public void selectRegion(String region) {
+        $(".CreditRegion").click();
+        $$("li").find(Condition.text(region)).click();
+        $("div[data-placeholder=Город]").doubleClick();
+
+    }
+
+    @Step("Push button {name}")
+    public void pushButton(String name, int step) {
+        $$(byText(name)).get(step).click();
+    }
+
+    public void selectGender() {
+        if ($(byText("Мужской")).isDisplayed()) {
+            $(byText("Мужской")).click();
+        }
+    }
+
+    @Step("Select option {selector} field with {i} ")
+    public void selectOption(String selector, int i) {
+        $("select[name=" + selector + "]").selectOption(i);
     }
 }
