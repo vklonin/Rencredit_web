@@ -1,4 +1,4 @@
-# Autotests for IT_basis.com
+# Autotests for renecredit
 ___
 ## Stack
 | GitHub | IntelliJ IDEA | Java | Gradle | Junit5 | Selenide |
@@ -10,20 +10,24 @@ ___
 | <img src="images/Jenkins.svg" width="40" height="40"> | <img src="images/Selenoid.svg" width="40" height="40"> | <img src="images/Allure Report.svg" width="40" height="40"> | 
 ___
 
-## Run tests in Jenkins Default parameters [Jenkins](https://jenkins.autotests.cloud/job/dataart_tests/build?delay=0sec) <a href="https://www.jetbrains.com/idea/"><img src="./images/Jenkins.svg" width="30" height="30"  alt="Jenkins"/></a>
-
-* REMOTE_DRIVER_URL (url address from selenoid or grid. default selenoid.autotests.cloud)
+## Run tests in Jenkins Default parameters [Build](https://jenkins.autotests.cloud/job/rene_web_api_AllureTestOps/build?delay=0sec)
+* REMOTE_DRIVER_URL (url address from selenoid default selenoid.autotests.cloud)
 * ALLURE_NOTIFICATIONS_VERSION (default 3.0.1)
 * credentials passed through a Jenkins job (used Owner Java library to get them from .properties)
 
-## Telegram channel to look at results [(Telegram channel)](https://t.me/joinchat/d7-KKDr_A4FjMjM6)
-*telegram integration made through 3d-parties library, settings passed through Jenkins job
-![alt "Telegram"](./images/telegrammTb.png "telegram")
+## Jenkins job [Jenkins](https://jenkins.autotests.cloud/job/rene_web_api_AllureTestOps/) 
 
-## Results in Jenkins with Allure Reports
-![alt "Jenkins"](./images/jenkinsITb.png "Jenkins")
-![alt "Allure reports"](./images/allureITb.png "Allure Reports")
+## Allure TestOps project [link to a Launch](https://allure.autotests.cloud/launch/6498/tree/51610?treeId=956)
+![alt "Allure TestOps"](./images/ATORc.png "Allure TestOps")
+
+## Telegram channel to look at results [(Telegram channel)](https://t.me/joinchat/d7-KKDr_A4FjMjM6)
+![alt "Telegram"](./images/TelegramRc.png "telegram")
+
+## Results in Jenkins
+![alt "Jenkins"](./images/JenkinsRc.png "Jenkins")
+
+## Allure Reports
+![alt "Allure reports"](./images/AllureRc.png "Allure Reports")
 
 ## Test results video attachment example from Selenoid
-
-![alt "Video from Selenoid"](./images/videoITb.gif "Video from Selenoid")
+![alt "Video from Selenoid"](./images/videoRc.mp4 "Video from Selenoid")
