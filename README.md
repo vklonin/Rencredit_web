@@ -30,4 +30,4 @@ ___
 ![alt "Allure reports"](./images/AllureRc.png "Allure Reports")
 
 ## Test results video attachment example from Selenoid
-![alt "Video from Selenoid"](./images/videoRc.mp4 "Video from Selenoid")
+![alt "Video from Selenoid"](./images/videoRc.gif "Video from Selenoid")
