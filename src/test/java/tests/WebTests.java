@@ -1,5 +1,8 @@
 package tests;
 
+import config.Layer;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,9 +12,14 @@ import pages.utils.MainNavigationMenuItem;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.sleep;
 
+
+@Layer("web")
+@Owner("vklonin")
+@Feature("Issues")
 public class WebTests extends TestBase {
 
     @Test
+    @Story("Check city change")
     void changeCityAndCheckResult() {
         String cityToChange = "Новороссийск";
 
@@ -26,8 +34,9 @@ public class WebTests extends TestBase {
             "50,990 000"
     })
 
+    @Story("Check calculation while moving sum handle")
     @ParameterizedTest(name = "Moving of sum handle and checking {1} value )")
-    void checkCreditCalculation(int movementPrecentage, String validaionString) {
+    void checkCreditCalculationWhileMovingSumHandle(int movementPrecentage, String validaionString) {
 
         page.openPage();
         page.getNavigationMenu().navigateToMenuItem(MainNavigationMenuItem.CREDITS);
@@ -108,8 +117,8 @@ public class WebTests extends TestBase {
         softly.assertThat($(".phone-confirm-block__phone").getText()).as("Request for card phone number ").isEqualTo(phoneToCheck);
     }
 
-    @Story("create a broker account")
     @Test
+    @Story("create a broker account")
     void createBrokerAccount() {
 
         String mainPhoneNumber = "919" + faker.number().digits(7);
@@ -151,8 +160,8 @@ public class WebTests extends TestBase {
         softly.assertThat($(".phone-confirm-block__phone").getText()).as("Request for card phone number ").isEqualTo(phoneToCheck);
     }
 
-    @Story("create a deposit account")
     @Test
+    @Story("create a deposit account")
     void createDepositAccount() {
 
         String mainPhoneNumber = "919" + faker.number().digits(7);
@@ -192,9 +201,6 @@ public class WebTests extends TestBase {
         page.pushButton("Отправить заявку", 0);
 
         softly.assertThat($(".phone-confirm-block__phone").getText()).as("Request for card phone number ").isEqualTo(phoneToCheck);
-
-        //sleep(5000);
-
     }
 
 

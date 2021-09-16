@@ -1,7 +1,12 @@
 package tests;
 
+import config.Layer;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
@@ -9,9 +14,14 @@ import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.core.Is.is;
 
+@Layer("rest")
+@Owner("vklonin")
+@Feature("Issues")
 public class APITests {
 
     @Test
+    @Story("Internet bank")
+    @DisplayName("Negative internet bank registration test valid but not acceptable data")
     void internetBankRegistrationNegativeBadData() {
 
         String requestBody = "product=99999999999&"
@@ -32,6 +42,9 @@ public class APITests {
     }
 
     @Test
+    @Story("Internet bank")
+    @DisplayName("Negative internet bank registration test invalid phone number")
+
     void internetBankRegistrationNegativeInvalidPhone() {
 
         String requestBody = "product=99999999999&"
@@ -53,6 +66,9 @@ public class APITests {
     }
 
     @Test
+    @Story("Internet bank")
+    @DisplayName("Negative internet bank registration test invalid product related number")
+
     void internetBankRegistrationNegativeValidationError() {
 
         String requestBody = "product=99999999999sdf&"
