@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.sleep;
 
 @Layer("web")
 @Owner("vklonin")
-@Feature("Issues")
+@Feature("Web interface general (to split in future)")
 public class WebTests extends TestBase {
 
     @Test

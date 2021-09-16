@@ -16,11 +16,11 @@ import static org.hamcrest.core.Is.is;
 
 @Layer("rest")
 @Owner("vklonin")
-@Feature("Issues")
+@Feature("Internet bank")
 public class APITests {
 
     @Test
-    @Story("Internet bank")
+    @Story("Negative internet bank registration test valid but not acceptable data")
     @DisplayName("Negative internet bank registration test valid but not acceptable data")
     void internetBankRegistrationNegativeBadData() {
 
@@ -42,7 +42,7 @@ public class APITests {
     }
 
     @Test
-    @Story("Internet bank")
+    @Story("Negative internet bank registration test invalid phone number")
     @DisplayName("Negative internet bank registration test invalid phone number")
 
     void internetBankRegistrationNegativeInvalidPhone() {
@@ -66,7 +66,7 @@ public class APITests {
     }
 
     @Test
-    @Story("Internet bank")
+    @Story("Negative internet bank registration test invalid product related number")
     @DisplayName("Negative internet bank registration test invalid product related number")
 
     void internetBankRegistrationNegativeValidationError() {
