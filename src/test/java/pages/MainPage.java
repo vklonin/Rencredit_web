@@ -3,7 +3,11 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
+
+import java.util.Set;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -31,6 +35,11 @@ public class MainPage {
     public void openPage() {
         open(basePageURL + "/local/templates/.default/assets/images/logo.svg");
         open(basePageURL);
+    }
+
+    @Step("Open '{any}' page")
+    public void openPage(String any) {
+        open(any);
     }
 
     @Step("Change city to '{cityToChange}'")

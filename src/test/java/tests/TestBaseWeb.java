@@ -17,7 +17,7 @@ import java.util.Locale;
 import static config.ConfigTests.credentialsConfig;
 import static java.lang.String.format;
 
-public class TestBase {
+public class TestBaseWeb {
 
     Faker faker = new Faker(new Locale("ru"));
     Faker fakerEn = new Faker();
